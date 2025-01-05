@@ -48,7 +48,8 @@
     "react-svg-gauge": "^1.0.10",
     "react-transition-group": "^4.4.5",
     "recharts": "^2.12.7",
-    "sweetalert2": "^11.6.13",
+    "sweetalert2": "^11.15.10",
+    "sweetalert2-react-content": "^5.1.0",
     "typescript": "^5.1.6",
     "web-vitals": "^3.4.0"
   },
