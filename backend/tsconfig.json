@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "baseUrl": "./app",
+    "outDir": "./dist",
+    "lib": [
+      "DOM",
+      "ES2015",
+      "ES2021.String"
+    ],
+  },
+  "include": [
+    "app/*",
+    "app/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true
+  }
+}
