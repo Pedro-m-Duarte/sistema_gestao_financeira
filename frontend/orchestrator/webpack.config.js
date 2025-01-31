@@ -11,7 +11,7 @@ module.exports = {
             template: './public/index.html'
         }),
         new ModuleFederationPlugin({
-            name: 'container',
+            name: 'orchestrator',
             remotes: {
                 dashboard: 'dashboard@http://localhost:3001/remoteEntry.js',
                 navbar: 'navbar@http://localhost:3002/remoteEntry.js'
