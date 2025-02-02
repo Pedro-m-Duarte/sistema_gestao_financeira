@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+    api:
+      image: sd-backend
+      networks:
+        - sd
+      environment:
+        - TZ=America/Sao_Paulo
+        - DB_DEFAULT=postgresql://postgres:root@192.168.200.208:12082/custom-source-db
+      ports:
+        - 8080:5000
+    postgres:
+      image: postgres
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
+        PGDATA: /data/postgres
+      volumes:
+        - /home/pmduarte/Volumes/sd/postgres:/data/postgres
+      ports:
+        - "5432:5432"
+      networks:
+        - sd
+      restart: unless-stopped
+
+networks:
+    sd:
+      driver: bridge

@@ -1,0 +1,2 @@
+class OutOfBoundException(Exception):
+    pass
