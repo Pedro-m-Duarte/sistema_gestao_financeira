@@ -7,7 +7,6 @@ services:
         - sd
       environment:
         - TZ=America/Sao_Paulo
-        - DB_DEFAULT=postgresql://postgres:root@192.168.200.208:12082/custom-source-db
       ports:
         - 8080:5000
     postgres:
