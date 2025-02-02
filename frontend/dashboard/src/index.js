@@ -1,9 +1,7 @@
-import faker from 'faker';
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import AppDashboard from './AppDashboard';
 
-let dashboardString = '';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-for (let i = 0; i < 10; i++) {
-  dashboardString += `<div>${faker.commerce.productName()}</div>`;
-}
-
-document.querySelector('#dashboard-list').innerHTML = dashboardString;
+root.render(<AppDashboard/>);

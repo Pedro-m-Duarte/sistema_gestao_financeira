@@ -1,5 +1,7 @@
-import faker from 'faker';
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import AppNavBar from './AppNavBar';
 
-const navbarString = `<div>You hava ${faker.random.number()} new notifications</div>`;
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-document.querySelector('#navbar-list').innerHTML = navbarString;
+root.render(<AppNavBar/>);

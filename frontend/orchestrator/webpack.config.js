@@ -1,21 +1,40 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const {ModuleFederationPlugin} = require("webpack").container;
+const path = require("path");
 
+const htmlPlugin = new HtmlWebPackPlugin({
+  template: "./public/index.html",
+  filename: "./index.html"
+});
 module.exports = {
-    mode: "development",
-    devServer: {
-        port: 3000
+  mode: 'development',
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    port: 3001,
+    historyApiFallback: true, // Adicione esta linha
+    historyApiFallback:{
+      index:'/public/index.html'
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html'
-        }),
-        new ModuleFederationPlugin({
-            name: 'orchestrator',
-            remotes: {
-                dashboard: 'dashboard@http://localhost:3001/remoteEntry.js',
-                navbar: 'navbar@http://localhost:3002/remoteEntry.js'
-            }
-        })
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: "babel-loader"
+      }
+    }
     ]
-}
+  },
+  plugins: [
+    htmlPlugin,
+    new ModuleFederationPlugin({
+      name: "Orchestrator",
+      filename: "remoteEntry.js",
+      remotes: {
+        dashboard: "dashboard@http://localhost:3000/remoteEntry.js",
+        navbar: "navbar@http://localhost:3002/remoteEntry.js"
+      }
+    })
+  ]
+};
