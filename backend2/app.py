@@ -13,7 +13,7 @@ from werkzeug.exceptions import HTTPException
 from flask_cors import CORS
 from flask_migrate import Migrate
 
-from controllers.userController import user_ns  # Import the user namespace
+from controllers.faturaController import fatura_ns
 # import controllers.swagger as swagger
 from db import db
 
@@ -57,7 +57,7 @@ api = Api(
 )
 
 # Register namespaces
-api.add_namespace(user_ns, path="/api/users")
+api.add_namespace(fatura_ns, path="/api/fatura")
 
 
 # db.init_app(app)
