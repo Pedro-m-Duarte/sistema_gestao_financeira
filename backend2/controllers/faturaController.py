@@ -82,17 +82,32 @@ class FaturaCategorias(Resource):
 class FaturaSumByCategoria(Resource):
     @fatura_ns.marshal_list_with(sum_by_categoria_model)
     @fatura_ns.param("categoria", "Filter by categoria (optional)")
+    @fatura_ns.param("data_inicio", "Start date for filtering (optional, format: YYYY-MM-DD)")
+    @fatura_ns.param("data_fim", "End date for filtering (optional, format: YYYY-MM-DD)")
     def get(self):
         """
         Sum the 'valor' field grouped by 'categoria'.
-        Optionally filter by a specific categoria.
+        Optionally filter by a specific categoria and/or a date range.
         """
+        from sqlalchemy import func
+        from datetime import datetime
+
         categoria_filter = request.args.get("categoria", "").strip()
+        data_inicio = request.args.get("data_inicio")
+        data_fim = request.args.get("data_fim")
 
         query = db.session.query(Fatura.categoria, func.sum(Fatura.valor).label("total_valor"))
 
         if categoria_filter:
             query = query.filter(Fatura.categoria.ilike(f"%{categoria_filter}%"))
+
+        if data_inicio and data_fim:
+            try:
+                data_inicio = datetime.strptime(data_inicio, "%Y-%m-%d").date()
+                data_fim = datetime.strptime(data_fim, "%Y-%m-%d").date()
+                query = query.filter(Fatura.data.between(data_inicio, data_fim))
+            except ValueError:
+                return {"error": "Invalid date format. Use YYYY-MM-DD"}, 400
 
         result = query.group_by(Fatura.categoria).all()
 
