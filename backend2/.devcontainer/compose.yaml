@@ -9,7 +9,7 @@ services:
     volumes:
       - ..:/workspace
     ports:
-      - 8090:8889
+      - 8091:8889
     networks:
       - composes_sd
     command: jupyter notebook --ip=0.0.0.0 --no-browser --allow-root

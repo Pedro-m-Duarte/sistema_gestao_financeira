@@ -8,12 +8,17 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 module.exports = {
   mode: 'development',
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
   devServer: {
     static: path.join(__dirname, "dist"),
-    port: 3001,
-    historyApiFallback: true, // Adicione esta linha
-    historyApiFallback:{
-      index:'/public/index.html'
+    port: 3000,
+    historyApiFallback: {
+      disableDotRule: true,
     },
   },
   module: {
@@ -32,9 +37,11 @@ module.exports = {
       name: "Orchestrator",
       filename: "remoteEntry.js",
       remotes: {
-        dashboard: "dashboard@http://localhost:3000/remoteEntry.js",
-        navbar: "navbar@http://localhost:3002/remoteEntry.js"
-      }
+        dashboard: "dashboard@http://localhost:3001/remoteEntry.js",
+        navbar: "navbar@http://localhost:3002/remoteEntry.js",
+        painelControl: "painelControl@http://localhost:3003/remoteEntry.js"
+      },
+      shared: { react: { singleton: true, eager: true }, "react-dom": { singleton: true, eager: true } },
     })
   ]
 };
