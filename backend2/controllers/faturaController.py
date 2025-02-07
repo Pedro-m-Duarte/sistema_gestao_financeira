@@ -142,37 +142,41 @@ class FaturaList(Resource):
     Resource for listing and creating faturas.
     """
 
-    @fatura_ns.expect(fatura_search)
     @fatura_ns.marshal_list_with(fatura_model)
-    def post(self):
+    @fatura_ns.param("id", "Filter by id (optional)")
+    @fatura_ns.param("nome", "Filter by nome (optional)")
+    @fatura_ns.param("categoria", "Filter by categoria (optional)")
+    @fatura_ns.param("data_beg", "Beg date for filtering (optional, format: YYYY-MM-DD)")
+    @fatura_ns.param("data_end", "End date for filtering (optional, format: YYYY-MM-DD)")
+    def get(self):
         """Search faturas using optional filters."""
-        data = request.json
         query = Fatura.query
 
-        # Extract search parameters
-        if "id" in data:
-            query = query.filter(Fatura.id == data["id"])
-        if "nome" in data:
-            query = query.filter(Fatura.nome.ilike(f"%{data['nome']}%"))
-        if "categoria" in data:
-            query = query.filter(Fatura.categoria.ilike(f"%{data['categoria']}%"))
+        fatura_id = request.args.get("id", "")
+        nome = request.args.get("nome", "")
+        categoria_filter = request.args.get("categoria", "").strip()
+        data_beg = request.args.get("data_beg")
+        data_end = request.args.get("data_end")
 
-        # Handle date range filtering
-        data_beg = data.get("data_beg")
-        data_end = data.get("data_end")
+        # Extract search parameters
+        if fatura_id:
+            query = query.filter(Fatura.id == fatura_id)
+        if nome:
+            query = query.filter(Fatura.nome.ilike(f"%{nome}%"))
+        if categoria_filter:
+            query = query.filter(Fatura.categoria.ilike(f"%{categoria_filter}%"))
 
         if data_beg and data_end:
             try:
-                # Convert string to date objects
                 data_beg = datetime.strptime(data_beg, "%Y-%m-%d").date()
                 data_end = datetime.strptime(data_end, "%Y-%m-%d").date()
-
-                # Filter by date range
                 query = query.filter(Fatura.data.between(data_beg, data_end))
             except ValueError:
                 return {"error": "Invalid date format. Use YYYY-MM-DD"}, 400
 
         return query.all()
+
+
 @fatura_ns.route("/<int:fatura_id>")
 class FaturaResource(Resource):
     """
