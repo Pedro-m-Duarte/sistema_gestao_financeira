@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
-const expensesData = [
-  { name: 'Compra de supermercado', description: 'Compra mensal de alimentos', value: 200, category: 'Alimentação', date: '2025-02-01' },
-  { name: 'Aluguel', description: 'Pagamento do aluguel', value: 800, category: 'Casa', date: '2025-02-05' },
-  { name: 'Mensalidade faculdade', description: 'Pagamento da mensalidade', value: 500, category: 'Educação', date: '2025-02-10' },
-  { name: 'Cinema', description: 'Ida ao cinema', value: 50, category: 'Lazer', date: '2025-02-15' },
-];
-
 export default function ExpenseLists({ startDate, endDate }) {
-  const [expenses, setExpenses] = useState(expensesData);
+  const [expenses, setExpenses] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+
+  const getListByDate = (startDate, endDate) => {
+    fetch(`http://localhost:5000/api/fatura/?data_beg=${startDate}&data_end=${endDate}`, {
+      method: 'GET',
+      headers: {
+        'accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        setExpenses(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
 
   useEffect(() => {
     if (startDate && endDate) {
-      const filteredExpenses = expensesData.filter(expense => {
-        const expenseDate = new Date(expense.date);
-        return expenseDate >= new Date(startDate) && expenseDate <= new Date(endDate);
-      });
-      setExpenses(filteredExpenses);
-    } else {
-      setExpenses(expensesData);
+      getListByDate(startDate, endDate);
     }
   }, [startDate, endDate]);
 
@@ -27,10 +30,25 @@ export default function ExpenseLists({ startDate, endDate }) {
     setIsEditing(!isEditing);
   };
 
-  const handleDelete = (index) => {
-    const newExpenses = expenses.filter((_, i) => i !== index);
-    setExpenses(newExpenses);
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/api/fatura/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao excluir a fatura');
+      }
+      // Remove o item do estado apenas se a exclusão for bem-sucedida
+      setExpenses(expenses.filter(expense => expense.id !== id));
+    })
+    .catch(error => {
+      console.error('Erro ao excluir:', error);
+    });
   };
+  
 
   // Ordena a lista de gastos por data
   const sortedExpenses = [...expenses].sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -39,7 +57,7 @@ export default function ExpenseLists({ startDate, endDate }) {
     <div>
       <h2>Lista de Gastos</h2>
       <button onClick={handleEditClick}>
-        {isEditing ? 'Ok' : 'Editar'}
+        {isEditing ? 'Cancelar' : 'Editar'}
       </button>
       <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '10px' }}>
         <thead>
@@ -55,15 +73,15 @@ export default function ExpenseLists({ startDate, endDate }) {
         <tbody>
           {sortedExpenses.map((expense, index) => (
             <tr key={index}>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.name}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.description}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.value}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.category}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.date}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.nome}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.descricao}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.valor}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.categoria}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.data}</td>
               {isEditing && (
                 <td style={{ border: '1px solid black', padding: '8px' }}>
-                  <button onClick={() => handleDelete(index)}>Excluir</button>
-                </td>
+                <button onClick={() => handleDelete(expense.id)}>Excluir</button>
+              </td>
               )}
             </tr>
           ))}

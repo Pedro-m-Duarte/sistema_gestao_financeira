@@ -4,26 +4,61 @@ export default function PainelControl() {
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
+    valor: 0,
     categoria: '',
-    valor: '',
     data: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
+
+    setFormData(prevState => {
+        const updatedData = { ...prevState, 
+          [name]: name === 'valor' ? Number(value) : value // Converte `valor` para número
+        };
+        console.log("Novo estado atualizado:", updatedData);
+        return updatedData;
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Dados inseridos:', formData);
-    // Aqui você pode adicionar a lógica para enviar os dados para o backend
-  };
+    
+    // Pegando os dados mais recentes do estado
+    const newFormData = { ...formData };
 
-  console.log('Rendering PainelControl component');
+    console.log('Dados a serem enviados:', newFormData);
+
+    fetch('http://localhost:5000/api/fatura/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(newFormData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => Promise.reject(err));
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // Limpa o formulário após o envio bem-sucedido
+        setFormData({
+            nome: '',
+            descricao: '',
+            valor: 0,
+            categoria: '',
+            data: ''
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 import ExpenseLists from './ExpenseLists';
 
@@ -10,13 +10,7 @@ export default function GraphicPieDesign() {
   const [startDate, setStartDate] = useState(firstDayOfMonth);
   const [endDate, setEndDate] = useState(lastDayOfMonth);
   const [error, setError] = useState('');
-
-  const data = [
-    { name: 'Alimentação', value: 400 },
-    { name: 'Casa', value: 300 },
-    { name: 'Faculdade', value: 300 },
-    { name: 'Lazer', value: 200 },
-  ];
+  const [data, setData] = useState([]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const RADIAN = Math.PI / 180;
@@ -31,6 +25,21 @@ export default function GraphicPieDesign() {
       </text>
     );
   };
+
+  const getTotalValueByCategory = (startDate, endDate) => {
+    fetch(`http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=${startDate}&data_fim=${endDate}`)
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
+
+  useEffect(() => {
+    getTotalValueByCategory(startDate, endDate);
+  }, [startDate, endDate]);
 
   const handleStartDateChange = (e) => {
     setStartDate(e.target.value);
@@ -74,13 +83,13 @@ export default function GraphicPieDesign() {
             label={renderCustomizedLabel}
             outerRadius={80}
             fill="#8884d8"
-            dataKey="value"
+            dataKey="total_valor"
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Legend />
+          <Legend formatter={(value, entry) => `${entry.payload.categoria}: R$ ${entry.payload.total_valor}`} /> {/* Modifique esta linha */}
         </PieChart>
       </div>
       <ExpenseLists startDate={startDate} endDate={endDate} />

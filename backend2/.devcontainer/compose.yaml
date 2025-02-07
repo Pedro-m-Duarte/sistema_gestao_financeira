@@ -25,7 +25,7 @@ services:
       POSTGRES_PASSWORD: root
       PGDATA: /data/postgres
     volumes:
-      - /home/pmduarte/Volumes/sd/postgres:/data/postgres
+      - C:\Users\gabri\OneDrive\Documentos\CEFET\9P\SD\postgres:/data/postgres
     ports:
       - "5432:5432"
     networks:

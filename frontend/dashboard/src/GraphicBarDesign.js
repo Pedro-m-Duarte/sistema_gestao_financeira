@@ -1,42 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const dataByYear = {
-  2022: [
-    { name: 'Janeiro', valor: 2400, amt: 2400 },
-    { name: 'Fevereiro', valor: 1398, amt: 2210 },
-    { name: 'Março', valor: 9800, amt: 2290 },
-    { name: 'Abril', valor: 3908, amt: 2000 },
-    { name: 'Maio', valor: 4800, amt: 2181 },
-    { name: 'Junho', valor: 3800, amt: 2500 },
-    { name: 'Julho', valor: 4300, amt: 2100 },
-    { name: 'Agosto', valor: 4300, amt: 2100 },
-    { name: 'Setembro', valor: 4300, amt: 2100 },
-    { name: 'Outubro', valor: 9110, amt: 2100 },
-    { name: 'Novembro', valor: 4300, amt: 2100 },
-    { name: 'Dezembro', valor: 9800, amt: 2100 }
-  ],
-  2023: [
-    { name: 'Janeiro', valor: 3000, amt: 2400 },
-    { name: 'Fevereiro', valor: 2000, amt: 2210 },
-    { name: 'Março', valor: 9000, amt: 2290 },
-    { name: 'Abril', valor: 4000, amt: 2000 },
-    { name: 'Maio', valor: 5000, amt: 2181 },
-    { name: 'Junho', valor: 3500, amt: 2500 },
-    { name: 'Julho', valor: 4500, amt: 2100 },
-    { name: 'Agosto', valor: 4500, amt: 2100 },
-    { name: 'Setembro', valor: 4500, amt: 2100 },
-    { name: 'Outubro', valor: 9200, amt: 2100 },
-    { name: 'Novembro', valor: 4500, amt: 2100 },
-    { name: 'Dezembro', valor: 0, amt: 2100 }
-  ]
-};
-
 export default function GraphicBarDesign() {
+  const [dataByYear, setDataByYear] = useState({});
   const [selectedYear, setSelectedYear] = useState(2023);
 
+  const getDataByYear = (year) => {
+    const startDate = `${year}-01-01`;
+    const endDate = `${year}-12-31`;
+
+    fetch(`http://localhost:5000/api/fatura/?data_beg=${startDate}&data_end=${endDate}`, {
+      method: 'GET',
+      headers: {
+        'accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const monthlyData = Array(12).fill(0).map((_, index) => ({
+          name: new Date(0, index).toLocaleString('default', { month: 'long' }),
+          valor: 0
+        }));
+
+        data.forEach(expense => {
+          const month = new Date(expense.date).getMonth();
+          monthlyData[month].valor += expense.value;
+        });
+
+        setDataByYear(prevData => ({ ...prevData, [year]: monthlyData }));
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
+
+  useEffect(() => {
+    getDataByYear(selectedYear);
+  }, [selectedYear]);
+
   const handleYearChange = (e) => {
-    setSelectedYear(Number(e.target.value));
+    const year = Number(e.target.value);
+    setSelectedYear(year);
+    if (!dataByYear[year]) {
+      getDataByYear(year);
+    }
   };
 
   return (
@@ -52,21 +59,23 @@ export default function GraphicBarDesign() {
           </select>
         </label>
       </div>
-      <BarChart
-        width={600}
-        height={300}
-        data={dataByYear[selectedYear]}
-        margin={{
-          top: 20, right: 30, left: 20, bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="valor" fill="#8884d8" />
-      </BarChart>
+      {dataByYear[selectedYear] && (
+        <BarChart
+          width={600}
+          height={300}
+          data={dataByYear[selectedYear]}
+          margin={{
+            top: 20, right: 30, left: 20, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="valor" fill="#8884d8" />
+        </BarChart>
+      )}
     </div>
   );
 }

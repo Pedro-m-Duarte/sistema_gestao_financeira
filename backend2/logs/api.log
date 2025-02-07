@@ -1,79 +1,77 @@
-[2025-02-01 18:48:45,686] app ERROR - http://localhost:5000/api/users/: Exception on /api/users/ [POST]
-Traceback (most recent call last):
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/api.py", line 402, in wrapper
-    resp = resource(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/views.py", line 110, in view
-    return current_app.ensure_sync(self.dispatch_request)(**kwargs)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/resource.py", line 41, in dispatch_request
-    resp = meth(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/marshalling.py", line 244, in wrapper
-    resp = f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "/workspace/controllers/userController.py", line 44, in post
-    preference_auto_update_panel_items=data["preference_auto_update_panel_items"] or False,
-                                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-KeyError: 'preference_auto_update_panel_items'
-[2025-02-01 18:48:45,692] app INFO - http://localhost:5000/api/users/: Completed
-[2025-02-01 18:49:14,070] app INFO - http://localhost:5000/api/users/: Requested
-[2025-02-01 18:49:14,071] app INFO - http://localhost:5000/api/users/: Completed
-[2025-02-01 19:02:54,792] app INFO - http://localhost:5000/swagger: Requested
-[2025-02-01 19:02:54,804] app INFO - http://localhost:5000/swagger: Completed
-[2025-02-01 19:02:54,848] app INFO - http://localhost:5000/swaggerui/droid-sans.css: Requested
-[2025-02-01 19:02:54,856] app INFO - http://localhost:5000/swaggerui/droid-sans.css: Completed
-[2025-02-01 19:02:54,996] app INFO - http://localhost:5000/swaggerui/swagger-ui.css: Requested
-[2025-02-01 19:02:54,997] app INFO - http://localhost:5000/swaggerui/swagger-ui.css: Completed
-[2025-02-01 19:02:55,014] app INFO - http://localhost:5000/swaggerui/swagger-ui-bundle.js: Requested
-[2025-02-01 19:02:55,015] app INFO - http://localhost:5000/swaggerui/swagger-ui-bundle.js: Completed
-[2025-02-01 19:02:55,024] app INFO - http://localhost:5000/swaggerui/swagger-ui-standalone-preset.js: Requested
-[2025-02-01 19:02:55,025] app INFO - http://localhost:5000/swaggerui/swagger-ui-standalone-preset.js: Completed
-[2025-02-01 19:02:55,283] app INFO - http://localhost:5000/swagger.json: Requested
-[2025-02-01 19:02:55,284] app INFO - http://localhost:5000/swagger.json: Completed
-[2025-02-01 19:02:55,351] app INFO - http://localhost:5000/swaggerui/favicon-32x32.png: Requested
-[2025-02-01 19:02:55,352] app INFO - http://localhost:5000/swaggerui/favicon-32x32.png: Completed
-[2025-02-01 19:03:07,630] app INFO - http://localhost:5000/api/users/: Requested
-[2025-02-01 19:03:07,650] app INFO - http://localhost:5000/api/users/: Completed
-[2025-02-01 19:03:15,471] app INFO - http://localhost:5000/api/users/: Requested
-[2025-02-01 19:03:15,482] app INFO - http://localhost:5000/api/users/: Completed
-[2025-02-01 19:56:44,797] app INFO - http://127.0.0.1:5000/: Requested
-[2025-02-01 19:56:44,798] app ERROR - http://127.0.0.1:5000/: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
-Traceback (most recent call last):
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/api.py", line 446, in render_root
-    self.abort(HTTPStatus.NOT_FOUND)
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/namespace.py", line 153, in abort
-    abort(*args, **kwargs)
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask_restx/errors.py", line 28, in abort
-    flask.abort(code)
-  File "/home/vscode/.local/lib/python3.12/site-packages/flask/helpers.py", line 272, in abort
-    current_app.aborter(code, *args, **kwargs)
-  File "/home/vscode/.local/lib/python3.12/site-packages/werkzeug/exceptions.py", line 861, in __call__
-    raise self.mapping[code](*args, **kwargs)
-werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
-[2025-02-01 19:56:44,800] app INFO - http://127.0.0.1:5000/: Erro que eu nao sei
-[2025-02-01 19:56:44,800] app INFO - http://127.0.0.1:5000/: Completed
-[2025-02-01 19:56:51,672] app INFO - http://localhost:5000/swagger: Requested
-[2025-02-01 19:56:51,682] app INFO - http://localhost:5000/swagger: Completed
-[2025-02-01 19:56:51,745] app INFO - http://localhost:5000/swaggerui/droid-sans.css: Requested
-[2025-02-01 19:56:51,750] app INFO - http://localhost:5000/swaggerui/droid-sans.css: Completed
-[2025-02-01 19:56:51,860] app INFO - http://localhost:5000/swaggerui/swagger-ui.css: Requested
-[2025-02-01 19:56:51,860] app INFO - http://localhost:5000/swaggerui/swagger-ui.css: Completed
-[2025-02-01 19:56:51,881] app INFO - http://localhost:5000/swaggerui/swagger-ui-bundle.js: Requested
-[2025-02-01 19:56:51,881] app INFO - http://localhost:5000/swaggerui/swagger-ui-bundle.js: Completed
-[2025-02-01 19:56:51,908] app INFO - http://localhost:5000/swaggerui/swagger-ui-standalone-preset.js: Requested
-[2025-02-01 19:56:51,909] app INFO - http://localhost:5000/swaggerui/swagger-ui-standalone-preset.js: Completed
-[2025-02-01 19:56:52,225] app INFO - http://localhost:5000/swagger.json: Requested
-[2025-02-01 19:56:52,229] app INFO - http://localhost:5000/swagger.json: Completed
+[2025-02-07 02:08:06,997] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:07,034] app INFO - http://localhost:5000/api/fatura/?data_beg=0202-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:07,037] app INFO - http://localhost:5000/api/fatura/?data_beg=0202-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:07,288] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0202-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:07,291] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0202-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:07,828] app INFO - http://localhost:5000/api/fatura/?data_beg=2024-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:07,830] app INFO - http://localhost:5000/api/fatura/?data_beg=2024-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:07,832] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2024-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:07,835] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2024-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:11,982] app INFO - http://localhost:5000/api/fatura/?data_beg=20242-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:11,983] app INFO - http://localhost:5000/api/fatura/?data_beg=20242-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:12,449] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=20242-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:12,450] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=20242-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:14,483] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-01-01&data_end=2023-12-31: Requested
+[2025-02-07 02:08:14,486] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-01-01&data_end=2023-12-31: Completed
+[2025-02-07 02:08:14,487] app INFO - http://localhost:5000/api/fatura/?data_beg=2025-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:14,489] app INFO - http://localhost:5000/api/fatura/?data_beg=2025-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:14,508] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2025-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:14,512] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2025-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:18,142] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:18,145] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:18,597] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:18,600] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:18,778] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:18,780] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:18,780] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:18,783] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:18,988] app INFO - http://localhost:5000/api/fatura/?data_beg=0202-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:18,993] app INFO - http://localhost:5000/api/fatura/?data_beg=0202-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:18,994] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0202-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:18,998] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0202-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:19,305] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:19,308] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:19,309] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2023-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:19,311] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2023-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:27,192] app INFO - http://localhost:5000/api/fatura/?data_beg=2025-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:27,194] app INFO - http://localhost:5000/api/fatura/?data_beg=2025-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:27,227] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2025-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:27,230] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2025-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:27,260] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-01-01&data_end=2023-12-31: Requested
+[2025-02-07 02:08:27,263] app INFO - http://localhost:5000/api/fatura/?data_beg=2023-01-01&data_end=2023-12-31: Completed
+[2025-02-07 02:08:36,944] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:36,946] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:37,373] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:37,375] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:37,573] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:37,575] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:37,619] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:37,621] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:38,207] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0203-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:38,209] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0203-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:38,210] app INFO - http://localhost:5000/api/fatura/?data_beg=0203-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:38,212] app INFO - http://localhost:5000/api/fatura/?data_beg=0203-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:38,985] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:38,988] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:39,857] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0003-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:39,860] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0003-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:39,890] app INFO - http://localhost:5000/api/fatura/?data_beg=0003-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:39,893] app INFO - http://localhost:5000/api/fatura/?data_beg=0003-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:40,675] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:40,677] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:41,961] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:41,964] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0002-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:41,977] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:41,980] app INFO - http://localhost:5000/api/fatura/?data_beg=0002-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:42,211] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:42,214] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0020-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:42,254] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:42,256] app INFO - http://localhost:5000/api/fatura/?data_beg=0020-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:42,271] app INFO - http://localhost:5000/api/fatura/?data_beg=0200-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:42,276] app INFO - http://localhost:5000/api/fatura/?data_beg=0200-02-01&data_end=2025-02-28: Completed
+[2025-02-07 02:08:42,362] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0200-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:42,365] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=0200-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:42,514] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2003-02-01&data_fim=2025-02-28: Requested
+[2025-02-07 02:08:42,517] app INFO - http://localhost:5000/api/fatura/getTotalAmountByCartegory?data_inicio=2003-02-01&data_fim=2025-02-28: Completed
+[2025-02-07 02:08:42,518] app INFO - http://localhost:5000/api/fatura/?data_beg=2003-02-01&data_end=2025-02-28: Requested
+[2025-02-07 02:08:42,521] app INFO - http://localhost:5000/api/fatura/?data_beg=2003-02-01&data_end=2025-02-28: Completed

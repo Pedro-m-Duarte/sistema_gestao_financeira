@@ -20,4 +20,4 @@ ENV PATH="/opt/conda/bin:$PATH"
 # Install Jupyter Notebook
 RUN conda install -y jupyter && conda clean -afy
 
-RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip install --no-cache-dir -r requirements.txt
