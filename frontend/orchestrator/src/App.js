@@ -6,14 +6,15 @@ const AppNavBar = React.lazy(() => import('navbar/AppNavBar'));
 const AppPainelControl = React.lazy(() => import('painelControl/AppPainelControl'));
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: (
-  //     <Suspense fallback={<div>Loading...</div>}>
-  //       <AppNavBar />
-  //     </Suspense>
-  //   ),
-  // },
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <AppNavBar />
+        <AppDashboard />
+      </Suspense>
+    ),
+  },
   {
     path: "/dashboard",
     element: (

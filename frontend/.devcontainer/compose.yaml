@@ -32,7 +32,7 @@ services:
     volumes:
       - ../orchestrator:/workspace/orchestrator
     ports:
-      - "3000:3000"
+      - "3004:3004"
     networks:
       - microfrontend-network
     command: sh -c "cd /workspace/orchestrator && npm install && npm start"
