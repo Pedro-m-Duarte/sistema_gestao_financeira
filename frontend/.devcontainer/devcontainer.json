@@ -1,0 +1,23 @@
+{
+  "name": "Microfrontend Dev Container",
+  "dockerComposeFile": "compose.yaml",
+  "service": "orchestrator", // Default service to attach to
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+
+  // Use 'customizations' for extensions and settings
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint", // ESLint for JavaScript linting
+        "esbenp.prettier-vscode", // Prettier for code formatting
+        "eamodio.gitlens" // GitLens for Git integration
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "editor.formatOnSave": true,
+        "eslint.enable": true
+      }
+    }
+  }
+}

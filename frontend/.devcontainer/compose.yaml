@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  dashboard:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../dashboard:/workspace/dashboard
+    ports:
+      - "3001:3001"
+    networks:
+      - microfrontend-network
+    command: sh -c "cd /workspace/dashboard && npm install && npm start"
+
+  navbar:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../navbar:/workspace/navbar
+    ports:
+      - "3002:3002"
+    networks:
+      - microfrontend-network
+    command: sh -c "cd /workspace/navbar && npm install && npm start"
+
+  orchestrator:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../orchestrator:/workspace/orchestrator
+    ports:
+      - "3000:3000"
+    networks:
+      - microfrontend-network
+    command: sh -c "cd /workspace/orchestrator && npm install && npm start"
+
+  painel_control:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../painelControl:/workspace/painelControl
+    ports:
+      - "3003:3003"
+    networks:
+      - microfrontend-network
+    command: sh -c "cd /workspace/painelControl && npm install && npm start"
+
+networks:
+  microfrontend-network:
+    driver: bridge

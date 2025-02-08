@@ -6,7 +6,7 @@
 	// "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
 	"dockerComposeFile": "compose.yaml",
 	"workspaceFolder": "/workspace",
-	"service": "jupyter",
+	"service": "sistema_financeiro-sd",
 	"shutdownAction": "stopCompose",
 	"containerEnv": {
     "PYSUS_CACHEPATH": "/workspace/data"
