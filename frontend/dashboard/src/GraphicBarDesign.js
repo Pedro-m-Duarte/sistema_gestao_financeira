@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 
 export default function GraphicBarDesign() {
   const [dataByYear, setDataByYear] = useState({});
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const getDataByYear = (year) => {
     const startDate = `${year}-01-01`;
@@ -53,7 +53,7 @@ export default function GraphicBarDesign() {
         <label>
           Selecione o Ano:
           <select value={selectedYear} onChange={handleYearChange} style={{ marginLeft: '10px' }}>
-            {Object.keys(dataByYear).map(year => (
+          {[2022, 2023, 2024, 2025, 2026].map(year => (
               <option key={year} value={year}>{year}</option>
             ))}
           </select>

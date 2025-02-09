@@ -10,8 +10,10 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <AppNavBar />
-        <AppDashboard />
+        <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh' }}>
+          <AppNavBar />
+          <AppDashboard />
+        </div>
       </Suspense>
     ),
   },
@@ -19,8 +21,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <AppNavBar />
-        <AppDashboard />
+        <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh' }}>
+          <AppNavBar />
+          <AppDashboard />
+        </div>
       </Suspense>
     ),
   },
@@ -28,8 +32,11 @@ const router = createBrowserRouter([
     path: "/painel-control",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <AppNavBar />
-        <AppPainelControl />
+        <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh' }}>
+          <AppNavBar />
+          <AppPainelControl />
+        </div>
+
       </Suspense>
     ),
   },

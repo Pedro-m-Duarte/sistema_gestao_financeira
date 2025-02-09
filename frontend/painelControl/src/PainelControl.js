@@ -57,24 +57,23 @@ export default function PainelControl() {
     .catch(error => {
         console.error('Error:', error);
     });
-};
-
+  };
 
   return (
-    <div>
-      <h1>Painel de Controle Financeiro</h1>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+      <h1 style={{ textAlign: 'center', color: '#013024' }}>Adicione seus gastos</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input type="text" name="nome" value={formData.nome} onChange={handleChange} />
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Nome:</label>
+          <input type="text" name="nome" value={formData.nome} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
         </div>
-        <div>
-          <label>Descrição:</label>
-          <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Descrição:</label>
+          <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
         </div>
-        <div>
-          <label>Categoria:</label>
-          <select name="categoria" value={formData.categoria} onChange={handleChange}>
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Categoria:</label>
+          <select name="categoria" value={formData.categoria} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}>
             <option value="">Selecione uma categoria</option>
             <option value="Alimentação">Alimentação</option>
             <option value="Transporte">Transporte</option>
@@ -83,15 +82,15 @@ export default function PainelControl() {
             <option value="Lazer">Lazer</option>
           </select>
         </div>
-        <div>
-          <label>Valor Gasto:</label>
-          <input type="number" name="valor" value={formData.valor} onChange={handleChange} />
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Valor Gasto:</label>
+          <input type="number" name="valor" value={formData.valor} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
         </div>
-        <div>
-          <label>Data:</label>
-          <input type="date" name="data" value={formData.data} onChange={handleChange} />
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Data:</label>
+          <input type="date" name="data" value={formData.data} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
         </div>
-        <button type="submit">Inserir Dados</button>
+        <button type="submit" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: 'none', backgroundColor: '#013024', color: 'white', fontSize: '16px' }}>Inserir Dados</button>
       </form>
     </div>
   );

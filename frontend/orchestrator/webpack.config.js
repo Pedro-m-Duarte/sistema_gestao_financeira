@@ -4,7 +4,8 @@ const path = require("path");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
-  filename: "./index.html"
+  filename: "./index.html",
+  favicon: "./public/rpgLogo.png"
 });
 module.exports = {
   mode: 'development',
