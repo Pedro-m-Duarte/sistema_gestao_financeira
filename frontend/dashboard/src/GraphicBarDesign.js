@@ -23,8 +23,8 @@ export default function GraphicBarDesign() {
         }));
 
         data.forEach(expense => {
-          const month = new Date(expense.date).getMonth();
-          monthlyData[month].valor += expense.value;
+          const month = new Date(expense.data).getMonth();
+          monthlyData[month].valor += expense.valor;
         });
 
         setDataByYear(prevData => ({ ...prevData, [year]: monthlyData }));
