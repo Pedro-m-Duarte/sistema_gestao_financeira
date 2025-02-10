@@ -4,7 +4,7 @@ export default function PainelControl() {
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
-    valor: 0,
+    valor: '',
     categoria: '',
     data: ''
   });
@@ -49,7 +49,7 @@ export default function PainelControl() {
         setFormData({
             nome: '',
             descricao: '',
-            valor: 0,
+            valor: '',
             categoria: '',
             data: ''
         });

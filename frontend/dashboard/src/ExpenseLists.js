@@ -49,6 +49,10 @@ export default function ExpenseLists({ startDate, endDate }) {
     });
   };
   
+  const formatData = (data) => {
+    const date = new Date(data);
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  }
 
   // Ordena a lista de gastos por data
   const sortedExpenses = [...expenses].sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -77,7 +81,7 @@ export default function ExpenseLists({ startDate, endDate }) {
               <td style={{ border: '1px solid black', padding: '8px' }}>{expense.descricao}</td>
               <td style={{ border: '1px solid black', padding: '8px' }}>{expense.valor}</td>
               <td style={{ border: '1px solid black', padding: '8px' }}>{expense.categoria}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{expense.data}</td>
+              <td style={{ border: '1px solid black', padding: '8px' }}>{formatData(expense.data)}</td>
               {isEditing && (
                 <td style={{ border: '1px solid black', padding: '8px' }}>
                 <button onClick={() => handleDelete(expense.id)}>Excluir</button>

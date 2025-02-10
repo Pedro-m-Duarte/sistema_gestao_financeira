@@ -53,7 +53,7 @@ export default function GraphicBarDesign() {
         <label>
           Selecione o Ano:
           <select value={selectedYear} onChange={handleYearChange} style={{ marginLeft: '10px' }}>
-          {[2022, 2023, 2024, 2025, 2026].map(year => (
+          {[2020, 2021, 2022, 2023, 2024, 2025, 2026].map(year => (
               <option key={year} value={year}>{year}</option>
             ))}
           </select>
