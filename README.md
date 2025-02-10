@@ -45,34 +45,34 @@ No Visual Studio Code, instale a extensão **Dev Containers**, que permite utili
 ## Inicialização do Front-end
 
 1. Abra a pasta `frontend` no Visual Studio Code.
-2. Pressione `Ctrl + Shift + P` e digite:
-   ```
-   Dev Containers: Rebuild and Reopen in Container
-   ```
-3. Um novo Visual Studio Code será aberto.
+
 4. No terminal, execute os seguintes comandos em diferentes terminais:
    
    **Orquestrador:**
    ```bash
    cd orchestrator
+   npm install
    npm start
    ```
    
    **Navbar:**
    ```bash
    cd navbar
+   npm install
    npm start
    ```
    
    **Dashboard:**
    ```bash
    cd dashboard
+   npm install
    npm start
    ```
    
    **Painel de Controle:**
    ```bash
    cd painelControl
+   npm install
    npm start
    ```
 
